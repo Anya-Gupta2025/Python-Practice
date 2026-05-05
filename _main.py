@@ -1,3 +1,4 @@
-x = input("Hello! What is your name?\n")
-
-print("Hello ", x, "!")
+print("hello")
+print()
+print('hello')
+print("I'm coding")
