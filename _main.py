@@ -1,10 +1,26 @@
-print("hello")
-print()
-print('hello')
-print("I'm coding")
+# Lesson 1:
 
-# input("Name?")
-# print("Hello")
+    # print("hello")
+    # print()
+    # print('hello')
+    # print("I'm coding")
 
-print("Name?")
-input()
+    # input("Name?")
+    # print("Hello")
+
+    # print("Name?")
+    # input()
+
+
+# Lesson 2:
+
+    # print(5 + 5)
+    # print("5" + "5")
+    # print(5.0 + 5.0)
+    # print("5" + 5)
+    # print(5 + 5.0)
+    # print(5 / 5)
+    # print("5" * "5")
+    # print(5.0 / 5.0)
+    # #print("5" + 5)
+    # print(5 / 5.0)
