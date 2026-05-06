@@ -29,3 +29,10 @@
     # age = 15
     # #print(name + " is " + age)
     # print(name, "is", age)
+
+    # age = 5
+    # print("He is " + str(age))
+    # # print("He is " + age)
+    # age = input("Age? ")
+    # #print("Birth Year: ", 2026 - age)
+    # print("Birth Year: ", 2026 - int(age))
