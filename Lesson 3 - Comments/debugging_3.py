@@ -1,7 +1,9 @@
 ### 3 Question Quiz ###
 # This is a quiz where users are asked for answers and their answers are stored.
 
+# Constant variabes which wouldn't change thoughout the programme
 INSTRUCTIONS = "This is a quick 3 part quiz. A question will be asked, and then you answer it."
+
 
 # Asks user for name and outputs a greeting and instructions
 name = input("Hi! What's your name? ").title()
