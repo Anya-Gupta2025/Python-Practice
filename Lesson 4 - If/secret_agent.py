@@ -16,11 +16,6 @@ if password == "Falcon":
     print(f"You have been granted access, {name}! Welcome.")
     print()
 
-    print("We will ask you more questions to further check your identity!")
-    colour = input("What is the special colour of this organisation? ")
-
-    
-
     # Ask for the user's age and save it in a variable
     age = input("How old are you? ")
     print()
@@ -37,8 +32,8 @@ if password == "Falcon":
         print("You are a junior spy!")
 
     # If their age is 18 or over, tell them they are a Field Agent
-    if age >= 18:
-        print("You are a Field Agent!")    
+    else:
+        print("You are a Field Agent!")
 
 else:
     print("Wrong password, no access granted.")
