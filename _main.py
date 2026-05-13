@@ -30,9 +30,36 @@
     # #print(name + " is " + age)
     # print(name, "is", age)
 
+
+# Lesson 3:
+
     # age = 5
     # print("He is " + str(age))
     # # print("He is " + age)
     # age = input("Age? ")
     # #print("Birth Year: ", 2026 - age)
     # print("Birth Year: ", 2026 - int(age))
+
+
+# Lesson 4:
+
+    # print(5+5 == 10)
+    # print(5 + 5 ==8)
+    # print(5 != 5)
+    # print(5!= 6)
+    # print(5 == 5.0)
+    # print("hello" != "hi")
+    # print("hello" == "hi")
+    # print(5 == "5")
+    # print(5 + 5 >= 10)
+    # print(5 + 5 >= 8)
+
+    # if 5 < 10:
+    #     print("hello")
+
+    # if 5 < 10:
+    #     pass
+
+    # if 10 != 10:
+    #     print("hello")
+    # print ("goodbye")
