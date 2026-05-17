@@ -63,3 +63,15 @@
     # if 10 != 10:
     #     print("hello")
     # print ("goodbye")
+
+# Lesson 5:
+
+    # if 5 < 10:
+    #     print("Less than 10")
+    # print("10 or more")
+
+    # if 5 < 10:
+    #     print("Less than 10")
+
+    # else:
+    #     print("10 or more")
