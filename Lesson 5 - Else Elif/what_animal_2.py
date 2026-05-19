@@ -18,7 +18,9 @@ def tally_points(a):
     # Making variables global so that this function can modify them:
     global a_score, b_score, c_score, d_score, response
 
-    while not response:
+    response = False
+
+    while response == False:
         if a == "a":
             a_score += 1
             response = True
@@ -36,18 +38,18 @@ def tally_points(a):
             response = True
 
         else:
-            print("Invalid answer, try again.")
+            print("Invalid answer, try again. Make sure you answer is either 'a', 'b', 'c', 'd'.")
             a = input("Answer: ").lower() 
 
 
 # Give instructions to the user
+print()
 print("Hello! Wlecome to this quiz! Answer the next few questions in order to find out what animal you are! \n")
 
 
-## 3 questions and 4 animals ##
+## 3 questions and 5 animals ##
 
 # Ask your user a question about themselves, giving them 4 options
-
 print("What kind of person are you?")
 print(" a. Morning \n b. Afternoon \n c. Evening \n d. Night \n")
 
@@ -82,8 +84,14 @@ tally_points(response_3)
 
 
 # Tell them their animal:
+
+# If there is no clear option most selected, tell then they are aq Butterfly due to the way butterflies change from moth to the butterfly
 if a_score < 2 and b_score < 2 and c_score < 2 and d_score < 2:
     print("You are a Butterfly.")
+    print(a_score)
+    print(b_score)
+    print(c_score)
+    print(d_score)
 
 else:
     greatest = max(a_score, b_score, c_score, d_score)
@@ -101,3 +109,5 @@ else:
 
     else:
         print("You are a Duckling!")
+
+print()
