@@ -44,7 +44,7 @@ def tally_points(a):
 
 # Give instructions to the user
 print()
-print("Hello! Wlecome to this quiz! Answer the next few questions in order to find out what animal you are! \n")
+print("Hello! Welcome to this quiz! Answer the next few questions in order to find out what animal you are! \n")
 
 
 ## 3 questions and 5 animals ##
