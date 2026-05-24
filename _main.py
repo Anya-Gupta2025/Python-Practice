@@ -75,3 +75,20 @@
 
     # else:
     #     print("10 or more")
+
+# Lesson 6
+
+    # print("hello".upper())
+    # print("HELLO".lower())
+
+    # if "HELLO" == "hello":
+    #     print("The same!")
+
+    # if "HELLO".lower() == "hello":
+    #     print("The same!")
+
+    # age = 10
+    # if age == 11 or 12:
+    #     print("Access granted")
+    # if age == 11 or age == 12:
+    #     print("Access granted")
