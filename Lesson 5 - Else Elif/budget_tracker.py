@@ -1,18 +1,24 @@
 ### Budget Tracker ###
 # Create a budget tracker that gives financial recommendation around an item
 
+import os
 
-#Some constant variables:
+# Get the path of the folder where file of this programme is located
+folder = os.path.dirname(os.path.abspath(__file__))
+
+# Make full path to save.txt
+file_path = os.path.join(folder, "save.txt")
+
+# Some constant variables:
 INSTRUCTIONS = "This programme can help you decide whether you can buy an item or not!"
+
+SAVINGS = 20
 
 
 # Open the save file and read the budget
-file = open("save.txt", "r")
-BUDGET = int(file.read())
+file = open(file_path, "r")
+budget = int(file.read())
 file.close()
-
-# Create a constant to hold your savings (percentage) goal
-SAVINGS = 20
 
 
 # Ask user for item name and save in variable
@@ -22,7 +28,7 @@ print()
 # Print instructions and budget
 print(f"Welcome to your Budget tracker, {name}! \n")
 print(INSTRUCTIONS, "\n")
-print(f"Your current budget is ${BUDGET}. \n")
+print(f"Your current budget is ${budget}. \n")
 
 # Ask if they would like to add some money to thier budget
 response = input("Did you earn any money that you would like to add to your budget (y/n)? ")
@@ -39,20 +45,21 @@ if response == "y":
     
     # Ask for amount they would like to add to the budget
     amount_add = int(input("How much money would you like to add to the budget? "))
+    print()
 
     # Add amount to budget
-    BUDGET += amount_add
+    budget += amount_add
 
     # Open save file in write mode
-    file = open("save.txt", "w")
+    file = open(file_path, "w")
 
     # Save the new budget
-    file.write(str(BUDGET))
+    file.write(str(budget))
 
     # Close file
     file.close()
 
-    print(f"Your new remaining budget is ${BUDGET}.")
+    print(f"Your new remaining budget is ${budget}. \n")
 
 
 
@@ -79,7 +86,7 @@ cost = int(cost)
 
 
 # Calculate the percentage of budget (cost / budget) * 100
-percentage_budget = cost/BUDGET * 100
+percentage_budget = cost/budget * 100
 
 
 # Tell your user the percentage of your budget
@@ -109,7 +116,7 @@ if answer == "e":
 
     # Check if it is less than 30 percent and if it is tell them it's a big spend and should sleep on it
     elif percentage_budget < 30:
-        print("Oh, well that's a might be a big spend considering the item... I think you should sleep on it! \n")
+        print("Oh, well that might be a big spend considering the item... I think you should sleep on it! \n")
 
     # Otherwise, tell them it is quite expensive and they should find alternatives
     else:
@@ -124,7 +131,7 @@ if answer == "d":
 
     # Check if it is less than 50 percent and if it is tell them it's a big spend and should sleep on it
     elif percentage_budget < 50:
-        print("Oh, well that's a might be a big spend... I think you should sleep on it! \n")
+        print("Oh, well that might be a big spend... I think you should sleep on it! \n")
 
     # Otherwise, tell them it is quite expensive and they should find alternatives
     else:
@@ -140,7 +147,7 @@ if answer == "c":
 
     # Check if it is less than 40 percent and if it is tell them it's a big spend and should sleep on it
     elif percentage_budget < 40:
-        print("Oh, well that's a might be a big spend considering the item... I think you should sleep on it! \n")
+        print("Oh, well that might be a big spend considering the item... I think you should sleep on it! \n")
 
     # Otherwise, tell them it is quite expensive and they should find alternatives
     else:
@@ -156,7 +163,7 @@ if answer == "b":
 
     # Check if it is less than 35 percent and if it is tell them it's a big spend and should sleep on it
     elif percentage_budget < 35:
-        print("Oh, well that's a might be a big spend considering that's it's just clothing... I think you should sleep on it! \n")
+        print("Oh, well that might be a big spend considering that's it's just clothing... I think you should sleep on it! \n")
 
     # Otherwise, tell them it is quite expensive and they should find alternatives
     else:
@@ -172,7 +179,7 @@ if answer == "a":
 
     # Check if it is less than 20 percent and if it is tell them it's a big spend and should rethink it
     elif percentage_budget < 20:
-        print("Oh, well that's a might be a big spend considering that's it's just food... I think you should rethink this! \n")
+        print("Oh, well that might be a big spend considering that's it's just food... I think you should rethink this! \n")
 
     # Otherwise, tell them it is quite expensive and they should find alternatives
     else:
@@ -189,21 +196,21 @@ while buy != "y" and buy != "n":
 print()
 
 # If they bought the item and can afford it
-if buy == "y" and cost <= BUDGET:
+if buy == "y" and cost <= budget:
     
     # Subtract cost from budget
-    BUDGET -= cost
+    budget -= cost
 
     # Open save file in write mode
-    file = open("save.txt", "w")
+    file = open(file_path, "w")
 
     # Save the new budget
-    file.write(str(BUDGET))
+    file.write(str(budget))
 
     # Close file
     file.close()
 
-    print(f"Your new remaining budget is ${BUDGET}.")
+    print(f"Your new remaining budget is ${budget}.")
 
 # _______________________
 
@@ -215,7 +222,7 @@ if buy == "y" and cost <= BUDGET:
 
 # _______________________
 
-# EXPERT
+# EXPERT -- DONE
 # Try to create a budget tracker that saves data in a file 
 # so the remaining_budget can be updated every time the program is used
 # You will need to create a save.txt file to go with this (keep it in the same folder)
