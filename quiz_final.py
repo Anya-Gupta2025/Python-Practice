@@ -6,11 +6,14 @@ import textwrap
 
 # Function to format all the text in this quiz
 def text_format(text):
-    return (textwrap.fill(text, width = 90))
+    return "\n".join(
+        textwrap.fill(line, width=90)
+        for line in text.splitlines()
+    )
 
 
 
-## Pre-deiffing some Variables ##
+## Pre-defining some Variables ##
 instructions = "Welcome to Magic Quiz Madness. Play and answer the questions if you dare... You might be left with some fascinating, mysterious powers by the end of this! There are 10 questions in this quiz, and they increase with difficulty throughout! So, get ready for this amazing quiz! For questions 1 - 5, you will be awarded 3 points each. Then for the questions 6-10, you will be awards 5 points each. There are 40 points up for grabs!\n"
 permission_prompt = "Would you be comfortable with your name appearing on a leaderboard? Type 'yes' or 'no' to express your permission: "
 score = 0
@@ -51,7 +54,7 @@ questions_answers = {
 
     "6": {
         "question": "\nWhich scientist developed the theory of gravity after observing a falling apple?\n",
-        "answers": "\nA. Aritotle N \nB. Albert Einstein \nC. Isaac Newton \n",
+        "answers": "\nA. Aristotle N \nB. Albert Einstein \nC. Isaac Newton \n",
         "answer": "c"
     },
 
@@ -76,7 +79,7 @@ questions_answers = {
     "10": {
         "question": "\nHow tall is the tallest human ever born on Earth?\n",
         "answers": "\nA. 272 cm \nB. 259 cm \nC. 226 cm \n",
-        "answer": "b"
+        "answer": "a"
     } 
 }
 
@@ -84,7 +87,7 @@ questions_answers = {
 ## Start of the Quiz ##
 
 # Getting name of the player
-name = input("\nHello! Please enter you name or what you would be preffered to be called: ").title().strip()
+name = input("\nHello! Please enter you name or what you would be preferred to be called: ").title().strip()
 print(f"Hello, {name}! \n\n")
 
 #Printing instructions and asking for permission
@@ -94,7 +97,7 @@ permission = input(text_format(permission_prompt) + " ").lower().strip()
 print()
 
 while permission not in ["yes", "no"]:
-        print("\nHmm, that isn't a valid option repsonse. Make sure to express your response properly ('yes' or 'no').")
+        print("\nHmm, that isn't a valid option response. Make sure to express your response properly ('yes' or 'no').")
         permission = input("Answer: ").strip().lower()
 
 #Asking if the player is ready
@@ -112,6 +115,8 @@ while question_number < 11:
     print(text_format(question["question"]))
     print(text_format(question["answers"]))
     user_answer = input("\nAnswer: ").strip().lower()
+    correct_answer = question["answer"].upper()
+
 
     while user_answer not in ["a", "b", "c"]:
         print("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c')")
@@ -129,10 +134,10 @@ while question_number < 11:
 
     elif question_number < 10:
         print(text_format(f"\nSorry, that isn't correct, {name}. That's okay though, you have {10-question_number} questions remaining! Currently, you have {score} points.\n"))
-        print(f"The correct answer was {questions_answers[question_number["answer"]]}.\n")
+        print(f"The correct answer was {correct_answer}.\n")
 
     else:
-        print(text_format(f"Hmm, that isn't correct. But that's okay! That was a hard one! correct answer was {question["answer"]}.\n"))
+        print(text_format(f"Hmm, that isn't correct. But that's okay! That was a hard one! The correct answer was {correct_answer}.\n"))
 
     question_number += 1
 
