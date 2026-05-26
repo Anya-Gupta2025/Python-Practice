@@ -76,7 +76,7 @@
     # else:
     #     print("10 or more")
 
-# Lesson 6
+# Lesson 6:
 
     # print("hello".upper())
     # print("HELLO".lower())
@@ -92,3 +92,12 @@
     #     print("Access granted")
     # if age == 11 or age == 12:
     #     print("Access granted")
+
+# Lesson 7:
+
+    # name = "Paul"
+
+    # age = 15
+
+    # print(name + " is " + age)
+    # print(f"{name} is {age}.")

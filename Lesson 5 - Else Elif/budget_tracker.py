@@ -44,7 +44,7 @@ print()
 if response == "y":
     
     # Ask for amount they would like to add to the budget
-    amount_add = int(input("How much money would you like to add to the budget? "))
+    amount_add = int(input("How much money would you like to add to the budget? ").replace("$", "").strip())
     print()
 
     # Add amount to budget
