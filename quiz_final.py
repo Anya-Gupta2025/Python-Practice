@@ -2,6 +2,35 @@
 # This is a 10 Question Quiz which will be modified as I learn more python concepts
 
 import textwrap
+import os
+
+## To Make a Leaderboard ##
+
+# Get the path of the folder where file of this programme is located
+folder = os.path.dirname(os.path.abspath(__file__))
+
+# Make full path to leaderboard.txt
+file_path = os.path.join(folder, "leaderboard.txt")
+
+# Open the leaderboard file
+file = open("leaderboard.txt", "r")
+
+# Predefining some things:
+user = ''
+points = 0
+leaderboard = {}
+
+# Loading the leaderboard and saving it:
+def loading_leaderboard():
+    for line in file:
+        user, points = line.strip().split(",")
+        leaderboard[user] = int(points)
+
+loading_leaderboard()
+
+# Closing the file
+file.close()
+
 
 
 # Function to format all the text in this quiz
@@ -20,7 +49,7 @@ score = 0
 questions = 0
 
 
-#Questions and Answers
+# Questions and Answers
 questions_answers = {
     "1": {
         "question": "\nHow many days are in a leap year?",
@@ -96,6 +125,7 @@ print()
 permission = input(text_format(permission_prompt) + " ").lower().strip()
 print()
 
+# Validating response if it isn't "yes" or "no"
 while permission not in ["yes", "no"]:
         print("\nHmm, that isn't a valid option response. Make sure to express your response properly ('yes' or 'no').")
         permission = input("Answer: ").strip().lower()
@@ -122,6 +152,7 @@ while question_number < 11:
         print("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c')")
         user_answer = input("Answer: ")
 
+    # If user got the answer correct, then award them some points
     if user_answer == question["answer"]:
         
         if question_number < 6:
@@ -130,15 +161,59 @@ while question_number < 11:
         else:
             score += 5
         
+        # Tell user how many points they have
         print(text_format(f"\nThat's correct, {name}! You have {score} points now!\n"))
 
-    elif question_number < 10:
-        print(text_format(f"\nSorry, that isn't correct, {name}. That's okay though, you have {10-question_number} questions remaining! Currently, you have {score} points.\n"))
+    # If user got the question wrong, tell them the correct answer
+    else:
         print(f"The correct answer was {correct_answer}.\n")
 
-    else:
-        print(text_format(f"Hmm, that isn't correct. But that's okay! That was a hard one! The correct answer was {correct_answer}.\n"))
+        # If user get the answer answer wrong and there are questions remaining, output a message to encourage them keep going
+        if question_number < 10 and question_number != 9:
+            print(text_format(f"\nSorry, that isn't correct, {name}. That's okay though, you have {10-question_number} questions remaining! Currently, you have {score} points.\n"))
+
+        # If there is only one question remain, make sure to say "question" not "questions"
+        elif question_number == 9:
+            print(text_format(f"\nSorry, that isn't correct, {name}. That's okay though, you have {10-question_number} question remaining! Currently, you have {score} points.\n"))
+
+        # If it was the last question, just output some encouragement
+        else:
+            print(text_format(f"\nHmm, that isn't correct. But that's okay! That was a hard one!\n"))
 
     question_number += 1
+    print()
 
-print(f"Good job! The quiz is finished and you have {score} points!")
+print(f"\nGood job! The quiz is finished and you have {score} points!\n")
+
+user = name
+points = score
+
+## Update the leaderboard ##
+# This should happen only if the user gave permission
+if permission == "yes":
+    # Writing into the file
+    file = open("leaderboard.txt", "a")
+    file.write(f"{user},{points}\n")
+
+    # Closing the file
+    file.close()
+
+    # Opeingin the file in read mode
+    file = open("leaderboard.txt", "r")
+
+    # Rereading the file
+    loading_leaderboard()
+
+    # Closing the file
+    file.close()
+
+    # Rank the users
+    sorted_leaderboard = sorted(leaderboard.items(), key = lambda item: item[1], reverse = True)
+
+    # Print Leaderboard
+    print("\n\nLEADERBOARD:")
+    for user, points in sorted_leaderboard:
+        print(user, points)
+    
+    print()
+        
