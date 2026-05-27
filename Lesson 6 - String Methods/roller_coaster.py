@@ -3,7 +3,7 @@
 #           They must not have a heart condition
 #           OR they can ride if they have a VIP pass
 
-# Rides Dictionary and thier requirements
+# Rides Dictionary and their requirements
 rides = {
     "a": {
         "name": "Rollercoaster",
