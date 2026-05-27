@@ -33,6 +33,17 @@ loading_leaderboard()
 # Closing the file
 file.close()
 
+# Function to print the LeaderBoard
+def print_leaderboard():
+    # Rank the users
+    sorted_leaderboard = sorted(leaderboard.items(), key = lambda item: item[1], reverse = True)
+
+    # Print Leaderboard
+    print("\n\nLEADERBOARD:")
+    for user, points in sorted_leaderboard:
+        print(user, points)
+    
+    print()
 
 ## Some other components to make our quiz run smoothly ##
 
@@ -55,61 +66,71 @@ questions_answers = {
     "1": {
         "question": "\nHow many days are in a leap year?",
         "answers": "\nA. 30 \nB. 31 \nC. 366 \n",
-        "answer": "c"
+        "answer": "c",
+        "answer_word": "366"
     },
 
     "2": {
         "question": "\nWhich animal is known as the “King of the Jungle”?\n",
         "answers": "\nA. Tiger \nB. Lion \nC. Wolf \n",
-        "answer": "b"
+        "answer": "b",
+        "answer_word": "lion"
     },
 
     "3": {
         "question": "\nWhat is the capital city of Japan?\n",
         "answers": "\nA. Tokyo \nB. Hiroshima \nC. Nagasaki \n",
-        "answer": "a"
+        "answer": "a",
+        "answer_word": "tokyo"
     },
 
     "4": {
         "question": "\nWhich organ pumps blood around the human body?\n",
         "answers": "\nA. Heart \nB. Lungs \nC. Liver \n",
-        "answer": "a"
+        "answer": "a",
+        "answer_word": "heart"
     },
 
     "5": {
         "question": "\nWhat is the fastest land animal?\n",
         "answers": "\nA. Tiger \nB. Cheetah \nC. Jaguar \n",
-        "answer": "b"
+        "answer": "b",
+        "answer_word": "cheetah"
     },
 
     "6": {
         "question": "\nWhich scientist developed the theory of gravity after observing a falling apple?\n",
-        "answers": "\nA. Aristotle N \nB. Albert Einstein \nC. Isaac Newton \n",
-        "answer": "c"
+        "answers": "\nA. Aristotle \nB. Albert Einstein \nC. Isaac Newton \n",
+        "answer": "c",
+        "answer_word": "isaac newton"
     },
 
     "7": {
         "question": "\nIn mathematics, what is the value of π (pi) rounded to 2 decimal places?\n",
         "answers": "\nA. 3.23 \nB. 3.14 \nC. 1.51 \n",
-        "answer": "b"
+        "answer": "b",
+        "answer_word": "3.14"
     },
 
     "8": {
         "question": "\nWhich country has the largest population in the world as of recent years?\n",
         "answers": "\nA. India \nB. China \nC. USA \n",
-        "answer": "a"
+        "answer": "a",
+        "answer_word": "india"
     },
 
     "9": {
         "question": "\nWhat is the name of the deepest known part of the world's oceans?\n",
         "answers": "\nA. Java Trench \nB. Puerto Rico Trench \nC. Mariana Trench \n",
-        "answer": "c"
+        "answer": "c",
+        "answer_word": "mariana trench"
     },
 
     "10": {
-        "question": "\nHow tall is the tallest human ever born on Earth?\n",
-        "answers": "\nA. 272 cm \nB. 259 cm \nC. 226 cm \n",
-        "answer": "a"
+        "question": "\nHow tall is the tallest human ever born on Earth (cm)?\n",
+        "answers": "\nA. 272 \nB. 259 \nC. 226 \n",
+        "answer": "a",
+        "answer_word": "272"
     } 
 }
 
@@ -134,15 +155,20 @@ print("   /   \\ ")
 print("  /     \\ \n\n")
 
 
-# Printing instructions and asking for permission
+# Printing instructions
 print(text_format(instructions))
+print()
+
+# Printing the leaderboard ot demonstrate and asking for permission
+print("Here is the current leaderboard:")
+print_leaderboard()
 print()
 permission = input(text_format(permission_prompt) + " ").lower().strip()
 print()
 
 # Validating response if it isn't "yes" or "no"
-while permission not in ["yes", "no"]:
-        print("\nHmm, that isn't a valid option response. Make sure to express your response properly ('yes' or 'no').")
+while permission not in ["yes", "no", "y", "n"]:
+        print("\nHmm, that isn't a valid option response. Make sure to express your response properly ('yes' or 'no' or y/n).")
         permission = input("Answer: ").strip().lower()
 
 # Asking if the player is ready
@@ -168,16 +194,16 @@ while question_number < 11:
     user_answer = input("\nAnswer: ").strip().lower()
 
     # Saving the correct answer in a variable to tell the user the right answer later on if they get the question wrong
-    correct_answer = question["answer"].upper()
+    correct_answer = f'{question["answer"].upper()} or {question["answer_word"].title()}'
 
 
     # Validating quiz response and making sure they have entered on of the indicated options
-    while user_answer not in ["a", "b", "c"]:
+    while user_answer not in ["a", "b", "c"] and len(user_answer) == 1:
         print("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c')")
         user_answer = input("Answer: ")
 
     # If user got the answer correct, then award them some points
-    if user_answer == question["answer"]:
+    if user_answer == question["answer"] or user_answer == question["answer_word"]:
         
         # If they answered Question 5 or lower, award them 3 points
         if question_number < 6:
@@ -270,13 +296,5 @@ if permission == "yes":
     # Closing the file
     file.close()
 
-    # Rank the users
-    sorted_leaderboard = sorted(leaderboard.items(), key = lambda item: item[1], reverse = True)
-
-    # Print Leaderboard
-    print("\n\nLEADERBOARD:")
-    for user, points in sorted_leaderboard:
-        print(user, points)
-    
-    print()
-        
+    # Printing leaderboard
+    print_leaderboard()
