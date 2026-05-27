@@ -211,12 +211,31 @@ while question_number < 11:
     print()
 
 
-# Print their result (their points) in ASCII Art
+## Print their result (their points) in ASCII Art ##
+
+# Get personalised message depending on how many points they got
+
+# if they get a perfect score, give some good feedback
+if score == 40:
+    message = f"You got {score} points! That's a perfect score, {name}. Good job! Are you a wizard??"
+
+# If the user got 30 or more points, give some good feedback (but not as good as a perfect score feedback)
+elif score > 29:
+    message = f"You got {score} points! That's an awesome score, {name}. Good job! You seem to be a brain wizard!"
+
+# If user got 11 or more points, give some encouragement
+elif score > 10:
+    message = f"You got {score} points. That quiz was hard but you did good, {name}!"
+
+# Otherwise, tell them to consider wizard training!
+else:
+    message = f"You got {score} points. That was a hard quiz, {name}. Maybe consider wizard training to improve!"
+
 print("\n  _______")
 print(" /        \\")
 print("|    O   O |")
 print("|      w   |")
-print(f" \\________/  Good job! The quiz is finished and you have {score} points!")
+print(f" \\________/  {message}")
 print("     |     /")
 print("     |____|    ")
 print("    /|    ")
