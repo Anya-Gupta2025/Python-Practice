@@ -3,6 +3,7 @@
 
 import textwrap
 import os
+import random
 
 ## To Make a Leaderboard ##
 
@@ -19,6 +20,7 @@ file = open("leaderboard.txt", "r")
 user = ''
 points = 0
 leaderboard = {}
+borders = ["~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^", "<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>", '_.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._', ".oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.", "_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_"]
 
 # Function to load the leaderboard and save it into this programme
 def loading_leaderboard():
@@ -237,6 +239,7 @@ while question_number < 11:
     # Increasing the question count by 1 to avoid crashing the while loop
     question_number += 1
     print()
+    print(random.choice(borders))
 
 
 ## Print their result (their points) in ASCII Art ##
