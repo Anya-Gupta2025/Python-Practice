@@ -39,9 +39,11 @@ def print_leaderboard():
     sorted_leaderboard = sorted(leaderboard.items(), key = lambda item: item[1], reverse = True)
 
     # Print Leaderboard
-    print("\n\nLEADERBOARD:")
+    print("\n\n🏆 LEADERBOARD: 🏆\n")
+    rank = 1
     for user, points in sorted_leaderboard:
-        print(user, points)
+        print(f"   {rank}. {user}: {points}")
+        rank += 1
     
     print()
 
@@ -279,7 +281,7 @@ points = score
 ## Update the leaderboard ##
 
 # This should happen only if the user gave permission
-if permission == "yes":
+if permission == "yes" or permission == "y":
     # Writing into the file
     file = open("leaderboard.txt", "a")
     file.write(f"{user},{points}\n")
