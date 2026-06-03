@@ -101,3 +101,13 @@
 
     # print(name + " is " + age)
     # print(f"{name} is {age}.")
+
+
+# Lesson 8:
+
+    # guess = input("What's the password?")
+    # print("Checking password is a match...")
+    # while guess != "secret":
+    #     guess = input("Try again: ")
+    #     print("Checking password is a match...")
+    # input("Welcome!")
