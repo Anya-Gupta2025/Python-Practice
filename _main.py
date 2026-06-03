@@ -111,3 +111,9 @@
     #     guess = input("Try again: ")
     #     print("Checking password is a match...")
     # input("Welcome!")
+
+    # print(random.random())
+
+    # import random
+    # print(random.random())
+    # print(random.randint(0,10))

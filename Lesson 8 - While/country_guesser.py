@@ -11,7 +11,7 @@ print("\nWelcome to this country guessing game! You start will 20 points, and lo
 game_play = True
 
 # VALUES
-# TODO: Create a variable to store the correct country (e.g., "Italy").
+# Create a variable to store the correct country (e.g., "Italy").
 countries = ["Mexico", "Spain", "India", "China", "South Korea", "Bolivia", "South Africa", "Cuba", "New Zealand", "North Korea", "Hungary"]
 
 while game_play == True:
@@ -23,29 +23,29 @@ while game_play == True:
     # print(correct_country)
 
 
-    # TODO: Create a variable to keep track of the user's current guess. 
+    # Create a variable to keep track of the user's current guess. 
     #       (Hint: Start it as an empty string "" so the loop runs at least once!)
     guessed_country = ""
 
 
     # LOOP
-    # TODO: Start a 'while' loop. 
+    # Start a 'while' loop. 
     # The loop should keep running AS LONG AS the user's guess 
     # is NOT EQUAL to the correct country.
 
     while guessed_country != correct_country and score > 0:
 
-        # TODO: Ask the user for their guess and save it to your guess variable.
+        # Ask the user for their guess and save it to your guess variable.
         #       (Remember: This changes the loop condition so it doesn't run forever!)
         guessed_country = input("\nType your guess here: ").strip().title()
         
-        # TODO: (Optional) Add an 'if' statement inside the loop.
+        # (Optional) Add an 'if' statement inside the loop.
         #       If they guessed wrong, print an encouraging message or an extra hint.
         #       If they guessed right, the loop will automatically exit on the next check!
         if guessed_country == correct_country:
             print("\nGood job! You got it! :)\n")
             # GAME OVER / WINNING MESSAGE
-            # TODO: Print a congratulatory message celebrating their win!
+            # Print a congratulatory message celebrating their win!
             print("\nYay! You win! Congratulations!\n")
         
         # Otherwise, tell them they didn't get the answer
@@ -70,11 +70,11 @@ while game_play == True:
 
 # ================================================================
 # EXTENSION -- Done
-# TODO: Add an introduction
-# TODO: Add a scoring system (starts at 20, lose 1 point for each wrong guess)
-# TODO: Add a lose condition (if score reaches 0)
+# Add an introduction
+# Add a scoring system (starts at 20, lose 1 point for each wrong guess)
+# Add a lose condition (if score reaches 0)
 
 #==================================================================
-# EXPERT
-# TODO: Make the game unique (use a list of countries and randomly select one)
-# TODO: Add a play again option
+# EXPERT -- Done
+# Make the game unique (use a list of countries and randomly select one)
+# Add a play again option
