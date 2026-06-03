@@ -53,10 +53,10 @@ while game_play == True:
         
         # Ask the user to guess a number. 
         #       (CRITICAL HINT: Remember to convert their input into an integer!)
-        guessed_number = int(input("Type your guess here: ").strip())
+        guessed_number = int(input("\nType your guess here: ").strip())
 
-    # Call the number checker function
-    number_checker(guessed_number)
+        # Call the number checker function
+        number_checker(guessed_number)
 
     # GAME OVER / WINNING MESSAGE
     # Print a big victory message telling them they got it right!
