@@ -9,9 +9,22 @@ vault_combination = 465
 # Create a variable to keep track of how many attempts the player has used (start at 0).
 attempts = 0
 
+# Function to check the number of digits correct in the answer
+def num_checker(a, b):
+    vault_combo = b.split()
+    vault_1st = vault_combo[0]
+    vault_2nd = vault_combo[1]
+    vault_3rd = vault_combo[2]
+    num_list = a.split()
+    number_1st = num_list[0]
+    number_2nd = num_list[1]
+    number_3rd = num_list[2]
+
+
+
 # INTRODUCE THE GAME
 # Print a cool message explaining they are trying to hack a safe.
-print("\nWelcome Hacker.\nYou are about to hack a safe by typing its combination (3 digits long).")
+print("\nWelcome Hacker.\nYou are about to hack a safe by typing its combination (3 digits long). You have a limited ammount of time (10 attempts), so try your best!")
 
 
 # Let them know that typing 'exit' will quit the game entirely.
@@ -42,16 +55,21 @@ while True:
     # SCENARIO B: Invalid Input
     # -----------------------------------------------------------------
     # TODO: Check if their input is a valid number
-    try:
-        user_input = int(user_input.strip().lower())
 
-    except:
-        # If it's not, print "Error: Safe only accepts digits. Try again."
-        print("\nError: Safe only accepts digits. Try again.")
-
-        # Then, use 'continue' to skip the rest of the code and restart the loop.
+    if len(user_input.strip()) != 3:
+        print("Make sure you enter only 3 digit numbers please.")
         continue
 
+    else:
+        try:
+            user_input = int(user_input.strip().lower())
+
+        except:
+            # If it's not, print "Error: Safe only accepts digits. Try again."
+            print("\nError: Safe only accepts digits. Try again.")
+
+            # Then, use 'continue' to skip the rest of the code and restart the loop.
+            continue
 
     # -----------------------------------------------------------------
     # SCENARIO C: Processing a valid attempt
@@ -73,6 +91,19 @@ while True:
     else:
         print("\nSorry, this combination failed.\n")
 
+    # -----------------------------------------------------------------
+    # SCENARIO D: Running out of time (EXTENSION)
+    # -----------------------------------------------------------------
+    # Check if their attempts tracker has reached 10.
+    # If it has, print "Alarm triggered! Security is on the way!" and 'break' the loop.
+
+        if attempts >= 7:
+            print(f"\nOh no, you are running out of time! Hurry up, you only have {10-attempts} attempts remaining!\n")
+        
+        elif attempts == 10:
+            print("\nTime out. Mission failed. Alarm triggered! Security is on the way!\n")
+            break
+
 
 # GAME OVER
 # ---------------------------------------------------------------------
@@ -81,7 +112,7 @@ print("\n--- Game Over ---\n")
 
 
 # =========================================
-# EXTENSION
+# EXTENSION -- DONE
 # TODO Add a scenario D to your loop: Running out of time
     # -----------------------------------------------------------------
     # SCENARIO D: Running out of time (EXTENSION)
