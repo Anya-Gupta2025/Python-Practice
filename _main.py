@@ -117,3 +117,45 @@
     # import random
     # print(random.random())
     # print(random.randint(0,10))
+
+
+# Lesson 9:
+
+    # user_input = "idk"
+    # try:
+    #     num = int(user_input)
+    #     print(f"You picked {num}.")
+    # except:
+    #     print(f"{user_input} is not a number!")
+
+    # count = 0
+
+    # while count < 10:
+    #     print("Counting...")
+
+    #     if count < 5:
+    #         break
+    #     print("Almost done...")
+
+    # print("Finished")
+
+    # count = 0
+
+    # while count < 10:
+    #     print("Counting...")
+
+    #     if count < 5:
+    #         continue
+    #     print("Almost done...")
+
+    # print("Finished")
+
+    # while True:
+    #     guess = input("\nGuess a country ")
+
+    #     if guess.lower().strip() == "malawi":
+    #         break
+
+    #     print("\nTry Again!")
+
+    # print("\nWell done!")
