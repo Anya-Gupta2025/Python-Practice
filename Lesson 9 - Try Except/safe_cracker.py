@@ -4,21 +4,53 @@
 
 # SETUP YOUR VARIABLES
 # Create a variable for the correct vault combination (e.g., "742").
-vault_combination = 465
+vault_combination = "465"
 
 # Create a variable to keep track of how many attempts the player has used (start at 0).
 attempts = 0
 
 # Function to check the number of digits correct in the answer
 def num_checker(a, b):
-    vault_combo = b.split()
+
+    vault_combo = list(str(b))
     vault_1st = vault_combo[0]
     vault_2nd = vault_combo[1]
     vault_3rd = vault_combo[2]
-    num_list = a.split()
+
+    num_list = list(str(a))
     number_1st = num_list[0]
     number_2nd = num_list[1]
     number_3rd = num_list[2]
+
+    score = 0
+
+    if vault_1st == number_1st:
+        score += 1
+        print("\nYou have the first digit correct!")
+
+    if vault_2nd == number_2nd:
+        score += 1
+        print("\nYou got the second digit correct!")
+
+    if vault_3rd == number_3rd:
+        score += 1
+        print("\nYou got the third digit correct!")
+
+    print(f"\nYou got {score} digits in the correct place in total.")
+
+    score = 0
+
+    if number_1st in str(b):
+        score += 1
+
+    if number_2nd in str(b):
+        score += 1
+
+    if number_3rd in str(b):
+        score += 1
+    
+    print(f"\n{score} of your numbers are in the actual code (regardless of place).\n\n")
+
 
 
 
@@ -81,7 +113,7 @@ while True:
 
 
     # Check if 'user_input' matches the correct vault combination.
-    if user_input == vault_combination:
+    if user_input == int(vault_combination):
         # If it does: Print "Vault unlocked! You found the treasure!" and 'break' out of the loop.
         print("\nVault unlocked! You found the treasure!")
         print(f"\nIt took you {attempts} attempts.\n")
@@ -89,7 +121,7 @@ while True:
 
     # If it doesn't: Print a message telling them the combination failed.
     else:
-        print("\nSorry, this combination failed.\n")
+        num_checker(user_input, vault_combination)
 
     # -----------------------------------------------------------------
     # SCENARIO D: Running out of time (EXTENSION)
@@ -97,12 +129,12 @@ while True:
     # Check if their attempts tracker has reached 10.
     # If it has, print "Alarm triggered! Security is on the way!" and 'break' the loop.
 
-        if attempts >= 7:
-            print(f"\nOh no, you are running out of time! Hurry up, you only have {10-attempts} attempts remaining!\n")
-        
-        elif attempts == 10:
+        if attempts == 10:
             print("\nTime out. Mission failed. Alarm triggered! Security is on the way!\n")
             break
+
+        elif attempts >= 7:
+            print(f"\nOh no, you are running out of time! Hurry up, you only have {10-attempts} attempts remaining!\n")
 
 
 # GAME OVER
