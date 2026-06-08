@@ -12,7 +12,7 @@ valid_input = False
 # Start a loop while the input is invalid
 while valid_input == False:
 
-    # TODO Ask the user for their age and save it
+    # Ask the user for their age and save it
     age = input("\nHello! How old are you? ")
 
     #TRY
@@ -29,7 +29,7 @@ while valid_input == False:
     # Add an except statement
     except:
     
-    # TODO Tell the user their input was invalid
+    # Tell the user their input was invalid
         print("\nHmm, that isn't a valid number.")
 
 # Unindented = Loop has finished so the input must be valid now
@@ -39,11 +39,49 @@ while valid_input == False:
 if age > 18:
     print("\nYou are over 18! You have access.")
 
-# TODO Check if they are older than 13 and tell them they have partial access if they are.
+    print("\n\nNow you can create your avatar!")
+
+    character_class = input("\nWhat would be your character's class? (warrior or rogue) ").strip().lower()
+
+    while character_class not in ["warrior", "rogue"]:
+        character_class = input("\nInvalid answer. Try again: ")
+
+    eye_colour = input("\nWhat would be your character's eye colour be? (brown, blue, green, hazel) ").strip().lower()
+
+    while eye_colour not in ["brown", "blue", "green", "hazel"]:
+        eye_colour = input("\nInvalid answer. Try again: ")
+    
+    
+    hair_colour = input("\nWhat would be your character's hair colour be? (brown, black, blonde, white) ").strip().lower()
+
+    while hair_colour not in ["brown", "black", "blonde", "white"]:
+        hair_colour = input("\nInvalid answer. Try again: ")
+    
+    print(f"\nYour character is a {character_class} with {eye_colour} eyes and {hair_colour} hair!")
+    
+
+
+# Check if they are older than 13 and tell them they have partial access if they are.
 elif age > 13:
     print("\nYou are over 13 but not over 18, so you ave been granted partial access.")
 
-# TODO Otherwise tell them access has been denied
+    print("\n\nNow you can create your avatar!")
+
+    character_class = input("\nWhat would be your character's class? (warrior or rogue) ").strip().lower()
+
+    while character_class not in ["warrior", "rogue"]:
+        character_class = input("\nInvalid answer. Try again: ")
+    
+    print("\n\nNow you can create your avatar!")
+
+    animal = input("\nWhat would be your character's animal be? (fox, stag, lion, tiger) ").strip().lower()
+
+    while animal not in ["lion", "tiger", "stag", "fox"]:
+        animal = input("\nInvalid answer. Try again: ")
+
+    print(f"\nYour character is a {character_class} with {animal} as their pet!")
+
+# Otherwise tell them access has been denied
 else:
     print("\nSorry you aren't old enough. Access denied.")
 
