@@ -23,7 +23,7 @@ print(info)
 while True:
     budget = input("\nWhat is your budget for this? ").strip().lower()
     try:
-        budget = int(budget)
+        budget = float(budget)
         break
 
     except:
@@ -47,6 +47,7 @@ while True:
     "\n2. Remove item from cart" \
     "\n3. Clear cart and restart" \
     "\n4. View total and checkout" \
+    "\n5. Quit" \
     "\n\nAnswer: ").strip().lower()
 
 
@@ -67,7 +68,7 @@ while True:
         # Change price into a float
         while True:
             try:
-                item_price = int(item_price)
+                item_price = float(item_price)
                 break
         
             except:
@@ -81,7 +82,10 @@ while True:
         total_cost = sum(price_list)
         
         if total_cost > budget:
-            print("\nOh no, you have gone over the budget! Try removing some items!\n")
+            print(f"\nOh no, you have gone over the budget by ${total_cost-budget}, try removing some items!\n")
+            highest_price = max(price_list)
+            index = price_list.index(highest_price)
+            print(f"\nRecommendation: Remove {shopping_cart[index]} - (${highest_price})")
 
         else:
             print("\nYou are under your budget!")
@@ -116,7 +120,10 @@ while True:
         total_cost = sum(price_list)
 
         if total_cost > budget:
-            print("\nOh no, you have gone over the budget! Try removing some items!\n")
+            print(f"\nOh no, you have gone over the budget by ${total_cost-budget}, try removing some items!\n")
+            highest_price = max(price_list)
+            index = price_list.index(highest_price)
+            print(f"\nRecommendation: Remove {shopping_cart[index]} - (${highest_price})")
 
         else:
             print("\nYou are under your budget!")
@@ -145,7 +152,10 @@ while True:
         total_cost = sum(price_list)
 
         if total_cost > budget:
-            print("\nOh no, you have gone over the budget, try removing some items!\n")
+            print(f"\nOh no, you have gone over the budget by ${total_cost-budget}, try removing some items!\n")
+            highest_price = max(price_list)
+            index = price_list.index(highest_price)
+            print(f"\nRecommendation: Remove {shopping_cart[index]} - (${highest_price})")
             continue
         
         # Display the results
@@ -156,7 +166,7 @@ while True:
 
         i = 0
 
-        while i < len(shopping_cart)-1:
+        while i < len(shopping_cart):
             print(f"{shopping_cart[i]}: ${price_list[i]}")
             i += 1
 
@@ -164,6 +174,13 @@ while True:
         print("Well done! You are under your budget!")
 
         # Exit the loop (to exit the program)
+        break
+
+    # -----------------------------------------------------------------
+    # OPTION 5: QUIT
+    # -----------------------------------------------------------------
+    # Else check if option 5
+    elif user_action ==  "5":
         break
 
     # -----------------------------------------------------------------
@@ -175,10 +192,10 @@ while True:
         print("\nInvalid response.\n")
 
 # ====================================================================
-# EXTENSION
-# Add a budget to the list
-# TODO Tell them if their cart is over budget
-# TODO Recommend items to remove based on their price.
+# EXTENSION -- Done
+# Add a budget to the list -- Done
+# Tell them if their cart is over budget -- Done
+# Recommend items to remove based on their price. -- Done
 
 # =====================================================================
 # EXPERT
