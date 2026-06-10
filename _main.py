@@ -185,3 +185,35 @@
     # shopping_list.sort()
     # print(shopping_list)
 
+# Lesson 11:
+
+    # shopping_list = ["apples", "plums", "pizza"]
+    # print("apples" in shopping_list)
+
+    # print("a" in "definitely")
+
+    # user_inout = input()
+    # if user_inout.lower() in ["a", "b", "c", "d"]:
+    #     print("Checking answer...")
+
+    # else:
+    #     print("That's not a valid answer!")
+
+    # print(len("apples"))
+
+    # shopping_list = ["apples", "plums", "pizza"]
+    # print(len(shopping_list))
+    # print(len(shopping_list[1]))
+
+    # if len(input()) == 0:
+    #     print("You didn't type anything!")
+
+    # for food in ["apples", "carrots", "museli"]:
+    #     print(food)
+
+    # for i in range(10):
+    #     print("Hello")
+
+    # foods = ["apples", "carrots", "museli"]
+    # for i in range(len(foods)):
+    #     print(f"{i+1}. {foods[i].title()}")
