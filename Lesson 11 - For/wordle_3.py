@@ -9,7 +9,7 @@ import random
 
 # VALUES
 # Create a list of at least 5 different 5-letter words
-words = ["salad", "audio", "crust", "shape", "flick", "stray"]
+words = ["salad", "audio", "crust", "shape", "flick", "stray", "glass", "dream", "world", "plane", "moist", "great", "tempo", "check", "track"]
 
 # Create a variable called play and set it to True
 game_play = True
@@ -17,7 +17,12 @@ game_play = True
 # INTRODUCTION
 # Tell your user how to play wordle (make sure they know they must input 5 letter words)
 print("\nHello! Welcome to Wordle! In this game, you have to try and guess a 5-letter word by putting in your guesses." \
-"\nMake sure all of your guesses are 5-letters long!")
+"\nMake sure all of your guesses are 5-letters long!" \
+"\n\n\nOnce you enter your guess, a checked version of your word will come back:" \
+"\n\nRed letters: Wrong letter (not in the secret word)" \
+"\nYellow letters: Letter is in the secret word but not in the corect place" \
+"\nGreed letter: Letter is in the word and is in the correct place aswell" \
+"\n\nGood Luck! :)")
 
 # MAIN
 # Create a while loop that runs if play is true
