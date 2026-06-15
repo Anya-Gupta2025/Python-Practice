@@ -9,7 +9,7 @@ import random
 
 # VALUES
 # Create a list of at least 5 different 5-letter words
-words = ["salad", "audio", "crust", "shape", "flick", "stray", "glass", "dream", "world", "plane", "moist", "great", "tempo", "check", "track"]
+words = ["salad", "audio", "crust", "shape", "flick", "stray", "glass", "dream", "world", "plane", "moist", "great", "tempo", "check", "track", "words"]
 
 # Create a variable called play and set it to True
 game_play = True
@@ -99,7 +99,7 @@ while game_play == True:
 # Then finally print the list (you can use "".join(list_name) to merge them into a string if you like)
 
 # ==========================================================
-# EXPERT
+# EXPERT -- Done!
 # Following on from the extension, add colour to the letters instead (Don't use _ for incorrect anymore). Green for correct, orange for wrong place, red for incorrect. You'll need to add the colour as you add them to the list
 
 # print("\033[31mThis is Red Text\033[0m")
