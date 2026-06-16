@@ -217,3 +217,24 @@
     # foods = ["apples", "carrots", "museli"]
     # for i in range(len(foods)):
     #     print(f"{i+1}. {foods[i].title()}")
+
+# Lesson 12:
+
+    # fruit = [
+    #     ["apples", 52],
+    #     ["oranges", 47],
+    #     ["pears", 57],
+    #     ["bananas", 89],
+    #     ["strawberries", 32],
+    #     ["grapes", 68],
+    #     ["blueberries", 57],
+    #     ["pineaaples", 50],
+    #     ["kiwifruit", 61],
+    #     ["watermelons", 30]
+    # ]
+    # print(fruit[5][1])
+    # print(fruit[0][0])
+    # print(fruit[8][1])
+    # print(fruit[3][1])
+    # print(fruit[1][0])
+    # print(fruit[9][1])
