@@ -6,13 +6,17 @@
 # Import random module
 import random
 
-# Wild Pokemon
+## Wild Pokemon ##
+# Variables
+NAME = "name"
+HEALTH = 0
+
 # Create a multidimensional list that holds 4 pokemon names and their max health (you choose)
 pokemon_info = [
-    ["Pikachu", 100],
-    ["Squirtle", 80],
-    ["Bulbasaur", 60],
-    ["Mewtwo", 40]
+    {NAME: "Pikachu", HEALTH: 100},
+    {NAME: "Squirtle", HEALTH: 80},
+    {NAME: "Bulbasaur", HEALTH: 60},
+    {NAME: "Mewtwo", HEALTH: 40}
 ]
 
 # User Pokemon
