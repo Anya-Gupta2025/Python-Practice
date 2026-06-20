@@ -10,6 +10,8 @@ import random
 # Variables
 NAME = "name"
 HEALTH = 0
+TYPE = "type"
+DAMAGE = 0
 
 # Create a multidimensional list that holds 4 pokemon names and their max health (you choose)
 pokemon_info = [
@@ -22,20 +24,20 @@ pokemon_info = [
 # User Pokemon
 # Create a multidimensional list that holds 4 pokemon attacks and their different damage
 pokemon_attack_info = [
-    ["Punch", 2],
-    ["Kick", 4],
-    ["Water Blast", 6],
-    ["Electric Shock", 8]
+    {TYPE: "Punch", DAMAGE: 2},
+    {TYPE: "Kick", DAMAGE: 4},
+    {TYPE: "Water Blast", DAMAGE: 6},
+    {TYPE: "Electric Shock", DAMAGE: 8}
 ]
 
 # Create a variable to hold a randomised wild pokemon
 random_pokemon = random.choice(pokemon_info)
 
 # Create a current_health variable and set it to the max health of the random pokemon
-current_health = random_pokemon[1]
+current_health = random_pokemon[HEALTH]
 
 # Tell the user what pokemon they're facing
-print(f"\nHello! You are facing the pokemon {random_pokemon[0]}!")
+print(f"\nHello! You are facing the pokemon {random_pokemon[NAME]}!")
 print(f"\nThe current health of the pokemon is {current_health}.")
 
 # Create a while loop that continues until current health <= 0
@@ -53,15 +55,18 @@ while current_health > 0:
     while True:
         try:
             attack = int(attack)
-            break
-        
+            if attack < 1 or attack > 4:
+                attack = input("\nInvalid input, please enter the number regarding your choice of attack: ")
+            else:
+                break
+            
         except:
             attack = input("\nInvalid input, please enter the number regarding your choice of attack: ")
             continue
 
+
     # Using the number, get the attack damage value and minus it from current health
-    damage = pokemon_attack_info[attack-1][1]
-    current_health = current_health - damage
+    current_health -= pokemon_attack_info[attack-1][DAMAGE]
     print(f"\nThe current health of the pokemon is {current_health}.")
 
 # Tell the user they defeated the pokemon
