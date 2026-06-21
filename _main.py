@@ -218,6 +218,7 @@
     # for i in range(len(foods)):
     #     print(f"{i+1}. {foods[i].title()}")
 
+
 # Lesson 12:
 
     # fruit = [
@@ -238,3 +239,43 @@
     # print(fruit[3][1])
     # print(fruit[1][0])
     # print(fruit[9][1])
+
+
+# Lesson 13
+
+    # def calculate_area(x, y):
+    #     print(f"Area: {x * y} unit^2")
+
+    # calculate_area(50, 5)
+
+
+    # def repeat_message(message, times):
+    #     for i in range (times):
+    #         print(message)
+
+    # repeat_message("Hello", 5)
+
+
+    # def get_number():
+    #     while True:
+    #         num = input("Give me a number. ")
+    #         try:
+    #             num = int(num)
+    #             return
+            
+    #         except: 
+    #             print("That's not a number. ")
+
+    # num = get_number()
+
+
+    # def check_play():
+    #     play = input("Do you want to play again? ")
+        
+    #     if play.lower() in ["y", "yes"]:
+    #         return True
+        
+    #     else:
+    #         return False
+        
+    # check_play()
