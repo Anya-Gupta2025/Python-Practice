@@ -18,6 +18,8 @@ file = open("leaderboard.txt", "r")
 
 # Predefining some things:
 user = ''
+name = ""
+question = ''
 points = 0
 leaderboard = {}
 borders = ["~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^", "<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>", '_.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._', ".oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.", "_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_"]
@@ -51,6 +53,9 @@ def print_leaderboard():
 
 # Function to spot typos
 def spot_typo(actual_answer, answer):
+    while len(answer) < len(actual_answer):
+        answer += " "
+        
     try:
         typo_variation = 0.8 * len(actual_answer)
         variation_score = 0
@@ -59,7 +64,7 @@ def spot_typo(actual_answer, answer):
             if answer[i] == actual_answer[i]:
                 variation_score += 1
             
-        if variation_score >= typo_variation:
+        if variation_score >= typo_variation and abs(len(answer) - len(actual_answer)) <= 1:
             return True
         
         else:
@@ -68,6 +73,19 @@ def spot_typo(actual_answer, answer):
     except:
         return False
             
+# Correct answer awarding function:
+# If they answered Question 5 or lower, award them 3 points
+def correct_answer_reward(question_no):
+    global score
+    if question_no < 6:
+        score += 3
+                    
+    # If they answered Question 6 or higher, award them 5 points
+    else:
+        score += 5
+                    
+    # Tell user how many points they have
+    print(text_format(f"\n\033[32mThat's correct, {name}! The answer was {question['answer_word']}. You have {score} points now!\033[0m\n"))
 
 
 ## Some other components to make our quiz run smoothly ##
@@ -163,7 +181,7 @@ questions_answers = {
 
 ## Start of the Quiz and Main Function##
 def main():
-    global score, user, borders, leaderboard
+    global score, user, borders, leaderboard, name, question
     game_play = True
 
     while game_play == True:
@@ -228,33 +246,29 @@ def main():
 
 
             # Validating quiz response and making sure they have entered on of the indicated options
-            while user_answer not in ["a", "b", "c"] and len(user_answer) == 1:
+            while len(user_answer) == 1 and user_answer not in ["a", "b", "c"]:
                 print(text_format("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c') \nOr, you could type the answer as well."))
                 user_answer = input("Answer: ")
 
             # Spot Typo Programme --> If true then check if it is completely correct, if not, give some points, otherwise it must be a wrong answer
-            typo = spot_typo(question["answer"], user_answer)
+            typo = spot_typo(question["answer_word"], user_answer)
+
+            # If the user got the answer with the letter and ir was correct, then give them points
+            if user_answer == question["answer"]:
+                correct_answer_reward(question_number)
 
             if typo == True:
 
                 # If user got the answer correct, then award them some points
-                if user_answer == question["answer"] or user_answer == question["answer_word"]:
+                if user_answer == question["answer_word"]:
                     
-                    # If they answered Question 5 or lower, award them 3 points
-                    if question_number < 6:
-                        score += 3
-                    
-                    # If they answered Question 6 or higher, award them 5 points
-                    else:
-                        score += 5
-                    
-                    # Tell user how many points they have
-                    print(text_format(f"\n\033[32mThat's correct, {name}! The answer was {question['answer_word']}. You have {score} points now!\033[0m\n"))
+                    correct_answer_reward(question_number)
 
                 # If user made a typo then:
                 else:
                     # If user got 80% correct, then they are given 2 points
-                    print("\nLooks like there's been a typo.")
+                    score += 2
+                    print(text_format(f"\n\033[38;2;255;165;0mLooks like there's been a typo, {name}! The correct answer is {question["answer_word"].title()}. Don't worry though, you have been awarded 2 points regardless! You have {score} points now!\033[0m"))
 
             # If user got the question wrong, tell them the correct answer
             else:

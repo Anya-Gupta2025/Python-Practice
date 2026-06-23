@@ -207,7 +207,7 @@ def main():
 
 
             # Validating quiz response and making sure they have entered on of the indicated options
-            while user_answer not in ["a", "b", "c"] and len(user_answer) == 1:
+            while len(user_answer) == 1 and user_answer not in ["a", "b", "c"]:
                 print(text_format("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c') \nOr, you could type the answer as well."))
                 user_answer = input("Answer: ")
 
