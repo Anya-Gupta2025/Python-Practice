@@ -53,10 +53,11 @@ def print_leaderboard():
 
 # Function to format all the text in this quiz
 def text_format(text):
-    return "\n".join(
+    x = "\n".join(
         textwrap.fill(line, width=90)
         for line in text.splitlines()
-    )
+    ) + " "
+    return x
 
 
 # Pre-defining some Variables
@@ -139,170 +140,191 @@ questions_answers = {
 }
 
 
-## Start of the Quiz ##
+## Start of the Quiz and Main Function##
+def main():
+    global score, user, borders, leaderboard
+    game_play = True
 
-# Getting name of the player and greeting them
-name = input("\nHello! Please enter your name or what you would be preferred to be called: ").title().strip()
+    while game_play == True:
+        # Getting name of the player and greeting them
+        name = input("\nHello! Please enter your name or what you would be preferred to be called: ").title().strip()
 
-# Greating user with ASCII Art
-print("\n  _______")
-print(" /        \\")
-print("|    O   O |")
-print("|      w   |")
-print(f" \\________/  Hello, {name}!")
-print("     |     /")
-print("     |____|    ")
-print("    /|    ")
-print("   / |  ")
-print("  / / \\   ")
-print("   /   \\ ")
-print("  /     \\ \n\n")
-
-
-# Printing instructions
-print(text_format(instructions))
-print()
-
-# Printing the leaderboard ot demonstrate and asking for permission
-print("Here is the current leaderboard:")
-print_leaderboard()
-print()
-permission = input(text_format(permission_prompt) + " ").lower().strip()
-print()
-
-# Validating response if it isn't "yes" or "no"
-while permission not in ["yes", "no", "y", "n"]:
-        print(text_format("\n\033[91mHmm, that isn't a valid option response. Make sure to express your response properly ('yes' or 'no' or y/n).\033[00m"))
-        permission = input("\nAnswer: ").strip().lower()
-
-# Asking if the player is ready
-input('\nAre you ready? If so, press "enter" or "return" on your keyboard!')
-print()
+        # Greating user with ASCII Art
+        print("\n  _______")
+        print(" /        \\")
+        print("|    O   O |")
+        print("|      w   |")
+        print(f" \\________/  Hello, {name}!")
+        print("     |     /")
+        print("     |____|    ")
+        print("    /|    ")
+        print("   / |  ")
+        print("  / / \\   ")
+        print("   /   \\ ")
+        print("  /     \\ \n\n")
 
 
-## Quiz response checking and awarding points ##
+        # Printing instructions
+        print(text_format(instructions))
+        print()
 
-question_number = 1 # Variable to indicate what question the user is up to and how many questions are remaining
+        # Printing the leaderboard ot demonstrate and asking for permission
+        print("Here is the current leaderboard:")
+        print_leaderboard()
+        print()
+        permission = input(text_format(permission_prompt) + " ").lower().strip()
+        print()
 
-# While loop to avoid repeating the question and the answer porcess 10 times
-while question_number < 11:
+        # Validating response if it isn't "yes" or "no"
+        while permission not in ["yes", "no", "y", "n"]:
+                print(text_format("\n\033[91mHmm, that isn't a valid option response. Make sure to express your response properly ('yes' or 'no' or y/n).\033[00m"))
+                permission = input("\nAnswer: ").strip().lower()
 
-    # Introduce the quesiton to the user
-    print(f"\nHere is Question {question_number}!")
-    question = str(question_number)
-    question = questions_answers[question] # Saving the question in a variable to make it easier to access it later on
-    print(text_format(question["question"]))
-    print(text_format(question["answers"])) # Printing the answer options for the question
-
-    # Ask user for answer input
-    user_answer = input("\nAnswer: ").strip().lower()
-
-    # Saving the correct answer in a variable to tell the user the right answer later on if they get the question wrong
-    correct_answer = f'{question["answer"].upper()} or {question["answer_word"].title()}'
+        # Asking if the player is ready
+        input('\nAre you ready? If so, press "enter" or "return" on your keyboard!')
+        print()
 
 
-    # Validating quiz response and making sure they have entered on of the indicated options
-    while user_answer not in ["a", "b", "c"] and len(user_answer) == 1:
-        print(text_format("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c') \nOr, you could type the answer as well."))
-        user_answer = input("Answer: ")
+        ## Quiz response checking and awarding points ##
 
-    # If user got the answer correct, then award them some points
-    if user_answer == question["answer"] or user_answer == question["answer_word"]:
-        
-        # If they answered Question 5 or lower, award them 3 points
-        if question_number < 6:
-            score += 3
-        
-        # If they answered Question 6 or higher, award them 5 points
+        question_number = 1 # Variable to indicate what question the user is up to and how many questions are remaining
+
+        # While loop to avoid repeating the question and the answer porcess 10 times
+        while question_number < 11:
+
+            # Introduce the quesiton to the user
+            print(f"\nHere is Question {question_number}!")
+            question = str(question_number)
+            question = questions_answers[question] # Saving the question in a variable to make it easier to access it later on
+            print(text_format(question["question"]))
+            print(text_format(question["answers"])) # Printing the answer options for the question
+
+            # Ask user for answer input
+            user_answer = input("\nAnswer: ").strip().lower()
+
+            # Saving the correct answer in a variable to tell the user the right answer later on if they get the question wrong
+            correct_answer = f'{question["answer"].upper()} or {question["answer_word"].title()}'
+
+
+            # Validating quiz response and making sure they have entered on of the indicated options
+            while user_answer not in ["a", "b", "c"] and len(user_answer) == 1:
+                print(text_format("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c') \nOr, you could type the answer as well."))
+                user_answer = input("Answer: ")
+
+            # If user got the answer correct, then award them some points
+            if user_answer == question["answer"] or user_answer == question["answer_word"]:
+                
+                # If they answered Question 5 or lower, award them 3 points
+                if question_number < 6:
+                    score += 3
+                
+                # If they answered Question 6 or higher, award them 5 points
+                else:
+                    score += 5
+                
+                # Tell user how many points they have
+                print(text_format(f"\n\033[32mThat's correct, {name}! The answer was {question['answer_word']}. You have {score} points now!\033[0m\n"))
+
+            # If user made a typo then:
+            # If user got 80% correct, then they are given 2 points
+
+            # If user got the question wrong, tell them the correct answer
+            else:
+                print(f"\nThe correct answer was {correct_answer}.\n")
+
+                # If user get the answer answer wrong and there are questions remaining, output a message to encourage them keep going
+                if question_number < 10 and question_number != 9:
+                    print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {question['answer_word']}. That's okay though, you have {10-question_number} questions remaining! Currently, you have {score} points.\033[0m\n"))
+
+                # If there is only one question remain, make sure to say "question" not "questions"
+                elif question_number == 9:
+                    print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {question['answer_word']}. That's okay though, you have {10-question_number} question remaining! Currently, you have {score} points.\033[0m\n"))
+
+                # If it was the last question, just output some encouragement
+                else:
+                    print(text_format(f"\n\033[31mHmm, that isn't correct. But that's okay! That was a hard one! The answer was {question['answer_word']}.\033[0m\n"))
+
+            # Increasing the question count by 1 to avoid crashing the while loop
+            question_number += 1
+            print()
+            print(random.choice(borders))
+
+
+        ## Print their result (their points) in ASCII Art ##
+
+        # Get personalised message depending on how many points they got
+
+        # if they get a perfect score, give some good feedback
+        if score == 40:
+            message = f"\033[35mYou got {score} points! That's a perfect score, {name}. Good job! Are you a wizard??\033[00m"
+
+        # If the user got 30 or more points, give some good feedback (but not as good as a perfect score feedback)
+        elif score > 29:
+            message = f"\033[95mYou got {score} points! That's an awesome score, {name}. Good job! You seem to be a brain wizard!\033[00m"
+
+        # If user got 11 or more points, give some encouragement
+        elif score > 10:
+            message = f"\033[93mYou got {score} points. That quiz was hard but you did good, {name}!\033[00m"
+
+        # Otherwise, tell them to consider wizard training!
         else:
-            score += 5
-        
-        # Tell user how many points they have
-        print(text_format(f"\n\033[32mThat's correct, {name}! The answer was {question['answer_word']}. You have {score} points now!\033[0m\n"))
+            message = f"\033[38;2;255;165;0mYou got {score} points. That was a hard quiz, {name}. Maybe consider wizard training to improve!\033[0m"
 
-    # If user made a typo then:
-    # If user got 80% correct, then they are given 2 points
-
-    # If user got the question wrong, tell them the correct answer
-    else:
-        print(f"\nThe correct answer was {correct_answer}.\n")
-
-        # If user get the answer answer wrong and there are questions remaining, output a message to encourage them keep going
-        if question_number < 10 and question_number != 9:
-            print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {question['answer_word']}. That's okay though, you have {10-question_number} questions remaining! Currently, you have {score} points.\033[0m\n"))
-
-        # If there is only one question remain, make sure to say "question" not "questions"
-        elif question_number == 9:
-            print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {question['answer_word']}. That's okay though, you have {10-question_number} question remaining! Currently, you have {score} points.\033[0m\n"))
-
-        # If it was the last question, just output some encouragement
-        else:
-            print(text_format(f"\n\033[31mHmm, that isn't correct. But that's okay! That was a hard one! The answer was {question['answer_word']}.\033[0m\n"))
-
-    # Increasing the question count by 1 to avoid crashing the while loop
-    question_number += 1
-    print()
-    print(random.choice(borders))
+        print("\n  _______")
+        print(" /        \\")
+        print("|    O   O |")
+        print("|      w   |")
+        print(f" \\________/  {message}")
+        print("     |     /")
+        print("     |____|    ")
+        print("    /|    ")
+        print("   / |  ")
+        print("  / / \\   ")
+        print("   /   \\ ")
+        print("  /     \\ \n\n")
 
 
-## Print their result (their points) in ASCII Art ##
-
-# Get personalised message depending on how many points they got
-
-# if they get a perfect score, give some good feedback
-if score == 40:
-    message = f"\033[35mYou got {score} points! That's a perfect score, {name}. Good job! Are you a wizard??\033[00m"
-
-# If the user got 30 or more points, give some good feedback (but not as good as a perfect score feedback)
-elif score > 29:
-    message = f"\033[95mYou got {score} points! That's an awesome score, {name}. Good job! You seem to be a brain wizard!\033[00m"
-
-# If user got 11 or more points, give some encouragement
-elif score > 10:
-    message = f"\033[93mYou got {score} points. That quiz was hard but you did good, {name}!\033[00m"
-
-# Otherwise, tell them to consider wizard training!
-else:
-    message = f"\033[38;2;255;165;0mYou got {score} points. That was a hard quiz, {name}. Maybe consider wizard training to improve!\033[0m"
-
-print("\n  _______")
-print(" /        \\")
-print("|    O   O |")
-print("|      w   |")
-print(f" \\________/  {message}")
-print("     |     /")
-print("     |____|    ")
-print("    /|    ")
-print("   / |  ")
-print("  / / \\   ")
-print("   /   \\ ")
-print("  /     \\ \n\n")
+        # Saving their points and name into the variables for the leaderboard (making two variables keeps them separate and keep my code more manageable)
+        user = name
+        points = score
 
 
-# Saving their points and name into the variables for the leaderboard (making two variables keeps them separate and keep my code more manageable)
-user = name
-points = score
+        ## Update the leaderboard ##
 
+        # This should happen only if the user gave permission
+        if permission == "yes" or permission == "y":
+            # Writing into the file
+            file = open("leaderboard.txt", "a")
+            file.write(f"{user},{points}\n")
 
-## Update the leaderboard ##
+            # Closing the file
+            file.close()
 
-# This should happen only if the user gave permission
-if permission == "yes" or permission == "y":
-    # Writing into the file
-    file = open("leaderboard.txt", "a")
-    file.write(f"{user},{points}\n")
+            # Opening the file in read mode
+            file = open("leaderboard.txt", "r")
 
-    # Closing the file
-    file.close()
+            # Rereading the file
+            loading_leaderboard()
 
-    # Opening the file in read mode
-    file = open("leaderboard.txt", "r")
+            # Closing the file
+            file.close()
 
-    # Rereading the file
-    loading_leaderboard()
+            # Printing leaderboard
+            print_leaderboard()
 
-    # Closing the file
-    file.close()
+        # Asking the user whether they want to play again
+        play = ""
 
-    # Printing leaderboard
-    print_leaderboard()
+        while play not in ["no", "yes", "y", "n"]:
+            play = input("\nWould you like to play again? ")
+            if play in ["yes", "y"]:
+                game_play = True
+            
+            elif play in ["no", "n"]:
+                print()
+                game_play = False
+            
+            else:
+                print("\nInvalid response, try again. Response with y/yes or n/no")
+
+main()

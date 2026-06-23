@@ -100,15 +100,77 @@ category_names = [
 # List of all items
 all_items = fruits_and_vegies + home_essentials + ready_to_go_food + snacks_and_sweets + drinks
 
-# Function for buying
-def buy_item():
-    print()
+# Function for asking what items user would like displayed
+def display_items():
+    # Instructions and choice menu
+    print(text_format(f"\nWelcome to Anya's Shop! You have a budget of ${budget}. There are several categories you can shop from!"))
+    print("1. Fruits & Veggies" \
+    "\n2. Home Essentials" \
+    "\n3. Ready-To-Go Food" \
+    "\n4. Snacks & Sweets" \
+    "\n5. Drinks" \
+    "\n6. Display all items together\n")
+
+    # Ask user for input
+    choice = input(text_format("Please choose your option using the number assigned to it (e.g. 1 for Fruits & Veggies):"))
+
+    # Try to turn the choice into integer, if not, return error
+    while True:
+        try:
+            choice = int(choice)
+        except:
+            print("\nInvalid response. Try again.")
+            choice = input(text_format("Please choose your option using the number assigned to it (e.g. 1 for Fruits & Veggies):"))
+            continue
+
+        if 1 <= choice <= 5:
+            print_category(choice - 1)
+            category = category_name(choice - 1)
+            break
+        
+        elif choice == 6:
+            print_all()
+            category = "all"
+            break
+
+        else:
+            choice = input(text_format("Please choose your option using the number assigned to it (e.g. 1 for Fruits & Veggies):"))
+
+        return category
+
+
+# Function for buying --> NEEDS MAJOR FIXING
+def buy_item(category, budg):
+    global budget
+    while True:
+        item = input(text_format("\nWhat item would you like to purchase? Type the name of the item here: ")).strip().lower()
+
+        if category == "all":
+            category = all_items
+
+        if item in category:
+            #print
+            print("\nItem being bought...")
+            index = category.index(item)
+            budg -= category[index][PRICE]
+            buget = budg
+            print("Item has been bought. Your current budget is {budg}.")
+
+        
+        else:
+            print("Invalid item.")
+            continue
 
 # Function for printing all items
 def print_all():
     print(f"\n\n======= All Items =======")
     for i in range(4):
         print_category(i)
+    
+# Category name
+def category_name(index):
+    category = shop_categories[index]
+    return category
 
 # Function for printing only one category
 def print_category(index):
@@ -134,37 +196,22 @@ def text_format(text):
 
 # Main
 def main():
-    # Instructions and choice menu
-    print(text_format(f"\nWelcome to Anya's Shop! You have a budget of ${budget}. There are several categories you can shop from!"))
-    print("1. Fruits & Veggies" \
-    "\n2. Home Essentials" \
-    "\n3. Ready-To-Go Food" \
-    "\n4. Snacks & Sweets" \
-    "\n5. Drinks" \
-    "\n6. Display all items together\n")
+    # Display items
+    category = display_items()
 
-    # Ask user for input
-    choice = input(text_format("Please choose your option using the number assigned to it (e.g. 1 for Fruits & Veggies):"))
-
-    # Try to turn the choice into integer, if not, return error
+    # Check whether user wants to purchase an item and keep asking until they respond with something valid 
     while True:
-        try:
-            choice = int(choice)
-        except:
-            print("\nInvalid response. Try again.")
-            choice = input(text_format("Please choose your option using the number assigned to it (e.g. 1 for Fruits & Veggies):"))
-            continue
 
-        if 1 <= choice <= 5:
-            print_category(choice - 1)
-            break
-        
-        elif choice == 6:
-            print_all()
-            break
+        # Ask user whether they want to purchase an item
+        purchase = input(text_format("\nGreat! Would you like to purchase an item? Resppond with yes/y or no/n:")).lower().strip()
 
-        else:
-            choice = input(text_format("Please choose your option using the number assigned to it (e.g. 1 for Fruits & Veggies):"))
+        if purchase in ["y", "yes"]:
+            buy_item(category, budget)
+
+        elif purchase in ["n", "no"]:
+            break
+    
+
 
 main()
 
