@@ -279,3 +279,25 @@
     #         return False
         
     # check_play()
+
+
+# Function to spot typos
+def spot_typo(actual_answer, answer):
+    typo_variation = 0.8 * len(actual_answer)
+    variation_score = 0
+
+    for i in range(len(actual_answer)):
+        if answer[i] == actual_answer[i]:
+            variation_score += 1
+        
+    if variation_score >= typo_variation:
+        print("oops, there's been a typo.")
+    
+    print(variation_score)
+    print(typo_variation)
+        
+
+def main():
+    spot_typo("little", "littll")
+
+main()
