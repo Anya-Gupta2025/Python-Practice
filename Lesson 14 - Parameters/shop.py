@@ -13,6 +13,7 @@ import textwrap
 NAME = "name"
 PRICE = 0
 budget = 450
+category = []
 
 # List of fruits and vegies
 fruits_and_vegies = [
@@ -22,7 +23,7 @@ fruits_and_vegies = [
     {NAME: "Cauliflower", PRICE: 4},
     {NAME: "Broccoli", PRICE: 4},
     {NAME: "Carrot", PRICE: 2.50},
-    {NAME: "Bag of Spinach", PRICE: 5},
+    {NAME: "Bag Of Spinach", PRICE: 5},
     {NAME: "Orange", PRICE: 3.50},
     {NAME: "Dragonfruit", PRICE: 4.50}
 ]
@@ -64,7 +65,7 @@ snacks_and_sweets = [
     {NAME: "Cookies", PRICE: 4.99},
     {NAME: "Popcorn", PRICE: 3.50},
     {NAME: "Protein Bar", PRICE: 4.99},
-    {NAME: "Bag of Candy", PRICE: 3.99}
+    {NAME: "Bag Of Candy", PRICE: 3.99}
 ]
 
 # List of Drinks
@@ -136,25 +137,31 @@ def display_items():
         else:
             choice = input(text_format("Please choose your option using the number assigned to it (e.g. 1 for Fruits & Veggies):"))
 
-        return category
-
 
 # Function for buying --> NEEDS MAJOR FIXING
-def buy_item(category, budg):
-    global budget
+def buy_item(budg):
+    global budget, category
     while True:
-        item = input(text_format("\nWhat item would you like to purchase? Type the name of the item here: ")).strip().lower()
+        item = input(text_format("\nWhat item would you like to purchase? Type the name of the item here: ")).strip().title()
 
         if category == "all":
             category = all_items
 
-        if item in category:
+        items = []
+        for product in category:
+            items += product["name"] 
+
+        print(items)
+
+
+        if item in items:
             #print
             print("\nItem being bought...")
-            index = category.index(item)
+            index = items.index(item)
             budg -= category[index][PRICE]
-            buget = budg
+            budget = budg
             print("Item has been bought. Your current budget is {budg}.")
+            break
 
         
         else:
@@ -197,7 +204,7 @@ def text_format(text):
 # Main
 def main():
     # Display items
-    category = display_items()
+    display_items()
 
     # Check whether user wants to purchase an item and keep asking until they respond with something valid 
     while True:
@@ -206,7 +213,8 @@ def main():
         purchase = input(text_format("\nGreat! Would you like to purchase an item? Resppond with yes/y or no/n:")).lower().strip()
 
         if purchase in ["y", "yes"]:
-            buy_item(category, budget)
+            buy_item(budget)
+            print(f"\nYou have ${budget} remaining in your budget.")
 
         elif purchase in ["n", "no"]:
             break

@@ -26,6 +26,7 @@ borders = ["~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^", "<<>>
 
 # Function to load the leaderboard and save it into this programme
 def loading_leaderboard():
+    global file
     for line in file:
         global user, points, leaderboard
         user, points = line.strip().split(",")
@@ -85,7 +86,7 @@ def correct_answer_reward(question_no):
         score += 5
                     
     # Tell user how many points they have
-    print(text_format(f"\n\033[32mThat's correct, {name}! The answer was {question['answer_word']}. You have {score} points now!\033[0m\n"))
+    print(text_format(f"\n\033[32mThat's correct, {name}! The answer was {question['answer_word'].title()}. You have {score} points now!\033[0m\n"))
 
 
 ## Some other components to make our quiz run smoothly ##
@@ -181,7 +182,7 @@ questions_answers = {
 
 ## Start of the Quiz and Main Function##
 def main():
-    global score, user, borders, leaderboard, name, question
+    global score, user, borders, leaderboard, name, question, file
     game_play = True
 
     while game_play == True:
@@ -246,7 +247,7 @@ def main():
 
 
             # Validating quiz response and making sure they have entered on of the indicated options
-            while len(user_answer) == 1 and user_answer not in ["a", "b", "c"]:
+            while len(user_answer) <= 1 and user_answer not in ["a", "b", "c"]:
                 print(text_format("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c') \nOr, you could type the answer as well."))
                 user_answer = input("Answer: ")
 
@@ -257,7 +258,7 @@ def main():
             if user_answer == question["answer"]:
                 correct_answer_reward(question_number)
 
-            if typo == True:
+            elif typo == True:
 
                 # If user got the answer correct, then award them some points
                 if user_answer == question["answer_word"]:
@@ -272,19 +273,18 @@ def main():
 
             # If user got the question wrong, tell them the correct answer
             else:
-                print(f"\nThe correct answer was {correct_answer}.\n")
 
                 # If user get the answer answer wrong and there are questions remaining, output a message to encourage them keep going
                 if question_number < 10 and question_number != 9:
-                    print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {question['answer_word']}. That's okay though, you have {10-question_number} questions remaining! Currently, you have {score} points.\033[0m\n"))
+                    print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {correct_answer}. That's okay though, you have {10-question_number} questions remaining! Currently, you have {score} points.\033[0m\n"))
 
                 # If there is only one question remain, make sure to say "question" not "questions"
                 elif question_number == 9:
-                    print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {question['answer_word']}. That's okay though, you have {10-question_number} question remaining! Currently, you have {score} points.\033[0m\n"))
+                    print(text_format(f"\n\033[31mSorry, that isn't correct, {name}. The answer was {correct_answer}. That's okay though, you have {10-question_number} question remaining! Currently, you have {score} points.\033[0m\n"))
 
                 # If it was the last question, just output some encouragement
                 else:
-                    print(text_format(f"\n\033[31mHmm, that isn't correct. But that's okay! That was a hard one! The answer was {question['answer_word']}.\033[0m\n"))
+                    print(text_format(f"\n\033[31mHmm, that isn't correct. But that's okay! That was a hard one! The answer was {correct_answer}.\033[0m\n"))
 
             # Increasing the question count by 1 to avoid crashing the while loop
             question_number += 1
@@ -334,7 +334,7 @@ def main():
         ## Update the leaderboard ##
 
         # This should happen only if the user gave permission
-        if permission == "yes" or permission == "y":
+        if permission in ["yes", "y"]:
             # Writing into the file
             file = open("leaderboard.txt", "a")
             file.write(f"{user},{points}\n")
@@ -358,9 +358,11 @@ def main():
         play = ""
 
         while play not in ["no", "yes", "y", "n"]:
-            play = input("\nWould you like to play again? ")
+            play = input("\nWould you like to play again? ").strip().lower()
             if play in ["yes", "y"]:
                 game_play = True
+                points = 0
+                score = 0
             
             elif play in ["no", "n"]:
                 print()
