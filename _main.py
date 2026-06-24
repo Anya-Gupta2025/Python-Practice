@@ -279,3 +279,17 @@
     #         return False
         
     # check_play()
+
+# Testing Revision Sheet:
+    # fruits = ["apples", "oranges", "pears"]
+    # calories = [52, 47, 57] # per 100g 
+
+
+    # # Loop through the fruits to display a list of fruit
+    # for fruit in fruits:
+    #     print(fruit)
+    
+
+    # # Loop through both lists to display the fruit with corresponding calories
+    # for i in range(3):
+    #     print(f"100 grams of {fruits[i]} has {calories[i]} calories.")
