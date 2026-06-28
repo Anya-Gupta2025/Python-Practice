@@ -101,7 +101,7 @@ def text_format(text):
 
 
 # Pre-defining some Variables
-instructions = "Welcome to \033[94mMagic Quiz Madness!\033[00m Play and answer the questions if you dare... You might be left with some fascinating, mysterious powers by the end of this! There are \033[1m \033[95m10 questions\033[00m\033[0m in this quiz, and they increase with difficulty throughout! So, get ready for this amazing quiz! For questions 1 - 5, you will be awarded \033[93m3 points each\033[00m. Then for the questions 6-10, you will be awards \033[92m5 points each\033[00m. There are 40 points up for grabs!\n"
+INSTRUCTIONS = "Welcome to \033[94mMagic Quiz Madness!\033[00m Play and answer the questions if you dare... You might be left with some fascinating, mysterious powers by the end of this! There are \033[1m \033[95m10 questions\033[00m\033[0m in this quiz, and they increase with difficulty throughout! So, get ready for this amazing quiz! For questions 1 - 5, you will be awarded \033[93m3 points each\033[00m. Then for the questions 6-10, you will be awards \033[92m5 points each\033[00m. There are 40 points up for grabs!\n"
 permission_prompt = "Would you be comfortable with your name appearing on a leaderboard? Type 'yes' or 'no' to express your permission: "
 score = 0
 
@@ -205,7 +205,7 @@ def main():
 
 
         # Printing instructions
-        print(text_format(instructions))
+        print(text_format(INSTRUCTIONS))
         print()
 
         # Printing the leaderboard ot demonstrate and asking for permission
