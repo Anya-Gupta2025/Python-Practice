@@ -248,8 +248,8 @@ def main():
 
             # Validating quiz response and making sure they have entered on of the indicated options
             while len(user_answer) <= 1 and user_answer not in ["a", "b", "c"]:
-                print(text_format("\nInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c') \nOr, you could type the answer as well."))
-                user_answer = input("Answer: ")
+                print(text_format("\n\033[95mInvalid answer. Make sure you only type the letter corresponding to your answer. ('a' or 'b' or 'c') \nOr, you could type the answer as well.\033[00m"))
+                user_answer = input("\nAnswer: ")
 
             # Spot Typo Programme --> If true then check if it is completely correct, if not, give some points, otherwise it must be a wrong answer
             typo = spot_typo(question["answer_word"], user_answer)
